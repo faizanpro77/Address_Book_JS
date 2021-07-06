@@ -61,6 +61,8 @@ let getContact = () => {
     return contactInput;
 };
 
+let countContacts = () => addressBookArr.reduce((total, contact) => total + 1, 0);
+
 let viewContacts = () => {
     addressBookArr.forEach(contact => console.log(contact.toString()));
 }
@@ -99,9 +101,10 @@ let deleteContact = () => {
     }
 }
 
+        console.log("Welcome to AddressBook Program!!");
         let choice = 0;
         do {
-            console.log("Choose\n1. View Contacts\n2. Add Contact\n3. Edit Contact By name\n4. Delete Contact\n5. Exit");
+            console.log("Choose\n1. View Contacts\n2. Add Contact\n3. Edit Contact By name\n4. Delete Contact\n5. count\n6. exit");
             choice = prompt("Enter Your Choice ");
             switch (choice) {
                 case "1": viewContacts();
@@ -112,9 +115,12 @@ let deleteContact = () => {
                     break;
                 case "4": console.log(deleteContact());
                     break;
-                case "5": console.log("Exit");
+                case "5": console.log("count is "+countContacts());
                     break;
-                default: console.log("Invalid Choice");
+           
+                case "6": console.log("exit");
+                    break;
+                default: console.log("Invalid Choice !!");
             }
         
-        } while (choice != 5)
+        } while (choice != 6)
