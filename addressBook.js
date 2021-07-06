@@ -65,18 +65,19 @@ let deleteContact = () => {
     else {
         console.log("Contact deleted successfully!!");
         return addressBookArr.splice(index, 1);
-
     }
 }
 
-let searchByCity = () => {
-    let searchCity = prompt("Enter the city name ");
-    return addressBookArr.filter(contact => contact.city == searchCity);
-}
+let searchByCityState = (item) => {
+    let contactsByItemArr = new Array();
+    let itemName = prompt("Enter the " + item + " name ");
+    if (item == "City")
+        contactsByItemArr = addressBookArr.filter(contact => contact.city == itemName);
+    else if (item == "State")
+        contactsByItemArr = addressBookArr.filter(contact => contact.state == itemName);
+    console.log("Number of contacts " + countContacts(contactsByItemArr));
+    contactsByItemArr.forEach(contact => console.log(contact.toString()))
 
-let searchByState = () => {
-    let searchState = prompt("Enter the state name ");
-    return addressBookArr.filter(contact => contact.state == searchState);
 }
 
 console.log("Welcome to AddressBook Program!!");
