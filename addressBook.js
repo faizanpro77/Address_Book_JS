@@ -22,7 +22,7 @@ let getContact = () => {
     return contactInput;
 };
 
-let countContacts = () => addressBookArr.reduce((total, contact) => total + 1, 0);
+let countContacts = (contactsArray) => contactsArray.reduce((total, contact) => total + 1, 0);
 
 let viewContacts = () => {
     console.log("Number of contacts in this addressbook : " + countContacts());
@@ -80,10 +80,15 @@ let searchByCityState = (item) => {
 
 }
 
+let sortContacts = () => {
+    addressBookArr.sort((c1, c2) => ((c1.firstName + c1.lastName) > (c2.firstName + c2.lastName)) ? 1 : (((c1.firstName + c1.lastName) < (c2.firstName + c2.lastName) ? -1 : 0)));
+    viewContacts();
+}
+
 console.log("Welcome to AddressBook Program!!");
 let choice = 0;
 do {
-    console.log("Choose\n1. View Contacts\n2. Add Contact\n3. Edit Contact By name\n4. Delete Contact\n5. Search Contacts By City\n6. Search Contacts By State\n7. Exit");
+    console.log("Choose\n1. View Contacts\n2. Add Contact\n3. Edit Contact By name\n4. Delete Contact\n5. Search Contacts By City\n6. Search Contacts By State\n7. Sort contacts by person name\n8. Exit");
     choice = prompt("Enter Your Choice ");
     switch (choice) {
         case "1": viewContacts();
@@ -94,13 +99,15 @@ do {
             break;
         case "4": console.log(deleteContact().toString());
             break;
-        case "5": searchByCity();
+        case "5": searchByCityState("City");
             break;
-        case "6": searchByState();
+        case "6": searchByCityState("State");
             break;
-        case "7": console.log("Bye!!");
+        case "7": sortContacts();
+            break;
+        case "8": console.log("Bye!!");
             break;
         default: console.log("Invalid Choice !!");
     }
 
-} while (choice != 7)
+} while (choice != 8)
