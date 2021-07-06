@@ -68,8 +68,13 @@ let viewContacts = () => {
 }
 
 let addContact = (contact) => {
-    addressBookArr.push(contact);
-    console.log("Contact Added Successfully!!")
+    let index = getindexByName(contact.firstName, contact.lastName);
+    if (index == -1) {
+        addressBookArr.push(contact);
+        console.log("Contact Added Successfully!!");
+    }
+    else
+        console.log("Could not add contact as Name already exists!!");
 }
 
 let getindexByName = (frstName, lstName) => {
@@ -104,7 +109,7 @@ let deleteContact = () => {
         console.log("Welcome to AddressBook Program!!");
         let choice = 0;
         do {
-            console.log("Choose\n1. View Contacts\n2. Add Contact\n3. Edit Contact By name\n4. Delete Contact\n5. count\n6. exit");
+            console.log("Choose\n1. View Contacts\n2. Add Contact\n3. Edit Contact By name\n4. Delete Contact\n5. Exit");
             choice = prompt("Enter Your Choice ");
             switch (choice) {
                 case "1": viewContacts();
@@ -115,12 +120,9 @@ let deleteContact = () => {
                     break;
                 case "4": console.log(deleteContact());
                     break;
-                case "5": console.log("count is "+countContacts());
-                    break;
-           
-                case "6": console.log("exit");
+                case "5": console.log("Bye!!");
                     break;
                 default: console.log("Invalid Choice !!");
             }
         
-        } while (choice != 6)
+        } while (choice != 5)
